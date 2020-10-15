@@ -9,7 +9,12 @@ on:
     branches: [ main ]
 #  pull_request:
 #    branches: [ main ]
-
+  workflow_dispatch:
+    inputs:
+    test:
+      description: 'PSRA builds'
+      required: true
+      default: false
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -31,3 +36,10 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+  test:
+    if: ${{github.event.inputs.PSRA}}==true
+    runs-on: ubuntu-latest
+    steps:
+      - name: execute one liner
+        run: echo codition satisfied
+    
