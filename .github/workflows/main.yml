@@ -37,7 +37,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
   test:
-    if: ${{github.event.inputs.test}}== 'true'
+    if: github.event.inputs.test== true
     runs-on: ubuntu-latest
     steps:
       - name: execute one liner
