@@ -6,8 +6,8 @@ name: CI
 # events but only for the main branch
 on:
   push:
-    branches_ignore: 
-       [**]
+    branches-ignore: 
+      - '**'
 #  pull_request:
 #    branches: [ main ]
   workflow_dispatch:
