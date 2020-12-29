@@ -14,7 +14,7 @@ else {
 # cd IIS:\Sites\
 
 #check if the site exists
-if (!(Test-Path IIS:\Sites\$app_name ))
+if ((Test-Path IIS:\Sites\$app_name ))
 {
    New-Website -Name $app_name -ApplicationPool $pool_name -Port 8083
 }
