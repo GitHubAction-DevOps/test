@@ -1,4 +1,4 @@
-param ($pool_name, $app_name, $workspace, $packagepath )
+param ($pool_name, $app_name)
 
 #check if the app pool exists
 if (!(Test-Path IIS:\AppPools\$pool_name ))
@@ -16,7 +16,7 @@ else {
 #check if the site exists
 if (!(Test-Path IIS:\Sites\$app_name ))
 {
-   New-Website -Name $app_name -ApplicationPool $iisAppPoolName -Force -PhysicalPath $workspace\$packagepath -Port 8083
+   New-Website -Name $app_name -ApplicationPool $pool_name -Port 8083
 }
 else {
     echo "site exists"
