@@ -11,6 +11,7 @@ else {
     New-WebAppPool -Name $pool_name -Force
 }
 
+#cjeck site exists
 Reset-IISServerManager -Confirm:$false
 if ((Get-IISSite).name -eq $app_name)
 {
