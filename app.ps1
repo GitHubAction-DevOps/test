@@ -1,23 +1,22 @@
 param ($pool_name, $app_name)
 
 #check if the app pool exists
-if ((Test-Path IIS:\AppPools\$pool_name ))
+Reset-IISServerManager -Confirm:$false
+
+if ((Get-IISAppPool).name -eq $pool_name )
 {
-    #create the app pool
+    echo "POOL exist"
+}
+else {
     New-WebAppPool -Name $pool_name -Force
 }
-else {
-    echo "Pool exists"
-}
 
-#navigate to the sites root
-# cd IIS:\Sites\
-
-#check if the site exists
-if ((Test-Path IIS:\Sites\$app_name ))
+Reset-IISServerManager -Confirm:$false
+if ((Get-IISSite).name -eq $app_name)
 {
-   New-Website -Name $app_name -ApplicationPool $pool_name -Port 8083
+    echo "SITE exist"
 }
+
 else {
-    echo "site exists"
+    New-Website -Name $app_name -ApplicationPool $pool_name -Force -Port 8083
 }
