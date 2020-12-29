@@ -1,7 +1,7 @@
 param ($pool_name, $app_name)
 
 #check if the app pool exists
-if (!(Test-Path IIS:\AppPools\$pool_name ))
+if ((Test-Path IIS:\AppPools\$pool_name ))
 {
     #create the app pool
     New-WebAppPool -Name $pool_name -Force
